@@ -11,16 +11,22 @@ export class NegociacoesView extends View {
         </tr>
     </thead>
     <tbody>
-    ${model.lista().map(negociacao => {
+    ${model
+            .lista()
+            .map((negociacao) => {
             return `
             <tr>
-                <td>${new Intl.DateTimeFormat().format(negociacao.data)}</td>
+                <td>${this.dataConvert(negociacao.data)}</td>
                 <td>${negociacao.quantidade}</td>
                 <td>${negociacao.valor}</td>
             </tr>
         `;
-        }).join('')}
+        })
+            .join("")}
     </tbody>
 </table> `;
+    }
+    dataConvert(data) {
+        return new Intl.DateTimeFormat().format(data);
     }
 }
