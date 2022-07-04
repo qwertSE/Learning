@@ -8,7 +8,7 @@ export class Negociacao {
   get data(): Date {
     const data = new Date(this._data.getTime());
     return data;
-}
+  }
 
   get quantidade(): number {
     const quantidade = this._quantidade;
@@ -22,5 +22,14 @@ export class Negociacao {
 
   get volume(): number {
     return this._quantidade * this._valor;
+  }
+
+  public criaDe(dataString: string, quantidadeString: string, valorString: string): Negociacao {
+    const exp = /-/g;
+    const date = new Date(dataString.replace(exp, ","));
+    const quantidade = parseInt(quantidadeString);
+    const valor = parseFloat(valorString);
+
+    return new Negociacao(date, quantidade, valor);
   }
 }
